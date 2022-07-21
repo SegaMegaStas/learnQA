@@ -11,11 +11,9 @@ su_passwords = ["123456", "123456789", "qwerty", "password", "1234567", "1234567
                 "loveme", "whatever", "666666"]
 
 for i in su_passwords:
-    cookies_response = requests.post("https://playground.learnqa.ru/ajax/api/get_secret_password_homework",
-                                     data={"login": "super_admin", "password": i})
+    cookies_response = requests.post("https://playground.learnqa.ru/ajax/api/get_secret_password_homework", data={"login": "super_admin", "password": i})
     cookie_value = cookies_response.cookies.get("auth_cookie")
-    auth_response = requests.post("https://playground.learnqa.ru/ajax/api/check_auth_cookie",
-                                  cookies={"auth_cookie": cookie_value})
+    auth_response = requests.post("https://playground.learnqa.ru/ajax/api/check_auth_cookie", cookies={"auth_cookie": cookie_value})
     if auth_response.text == "You are NOT authorized":
         continue
     else:
